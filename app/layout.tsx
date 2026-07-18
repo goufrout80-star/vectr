@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/inter-tight";
+import { CursorGlow } from "@/components/CursorGlow";
 import { Header } from "@/components/Header";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import "./globals.css";
@@ -12,7 +14,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "VECTR — From call to crew",
+    default: "VECTR — The New Standard in Staffing",
     template: "%s — VECTR",
   },
   description:
@@ -20,16 +22,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   icons: { icon: "/vectr-mark.svg" },
   openGraph: {
-    title: "VECTR — From call to crew",
+    title: "VECTR — The New Standard in Staffing",
     description: "Staffing the world's critical systems.",
     type: "website",
-    images: [{ url: "/images/industrial-grid.webp", width: 1672, height: 939, alt: "VECTR critical infrastructure staffing" }],
+    images: [{ url: "/images/editorial/standards.webp", width: 1600, height: 1066, alt: "VECTR critical infrastructure staffing" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "VECTR — From call to crew",
     description: "Staffing the world's critical systems.",
-    images: ["/images/industrial-grid.webp"],
+    images: ["/images/editorial/standards.webp"],
   },
 };
 
@@ -44,6 +46,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body>
         <SmoothScroll />
+        <CursorGlow />
         <Header />
         {children}
       </body>

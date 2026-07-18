@@ -43,17 +43,17 @@ export function HomeExperience() {
   const [progress, setProgress] = useState(0);
   const [active, setActive] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const processOpacity = useTransform(scrollYProgress, [0.13, 0.2, 0.88, 0.97], [0, 1, 1, 0]);
-  const heroExit = Math.max(0, Math.min(1, (progress - 0.09) / 0.09));
+  const processOpacity = useTransform(scrollYProgress, [0.12, 0.19, 0.89, 0.97], [0, 1, 1, 0]);
+  const heroExit = Math.max(0, Math.min(1, (progress - 0.065) / 0.105));
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setLoaded(true), 1350);
+    const timeout = window.setTimeout(() => setLoaded(true), 1750);
     return () => window.clearTimeout(timeout);
   }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setProgress(latest);
-    const next = Math.max(0, Math.min(3, Math.floor((latest - 0.16) / 0.205)));
+    const next = Math.max(0, Math.min(3, Math.floor((latest - 0.15) / 0.205)));
     setActive(next);
   });
 
@@ -67,12 +67,12 @@ export function HomeExperience() {
             exit={{ opacity: 0, clipPath: "polygon(0 0,100% 0,100% 0,0 100%)" }}
             transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
           >
-            <div className="preloader-orbit preloader-orbit--one" />
-            <div className="preloader-orbit preloader-orbit--two" />
+            <div className="preloader-orbit preloader-orbit--one"><i /><i /><i /><i /><i /><i /><i /><i /></div>
+            <div className="preloader-orbit preloader-orbit--two"><i /><i /><i /><i /><i /><i /></div>
             <div className="pixel-mark" aria-label="Loading VECTR">
               <i /><i /><i /><i /><i /><i /><i />
             </div>
-            <span>Mobilizing systems</span>
+            <span>Mobilizing systems <b>00—100</b></span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -84,20 +84,12 @@ export function HomeExperience() {
           </div>
           <div className="world-vignette" />
 
-          <motion.div
-            className="hero-copy"
-            style={{ opacity: 1 - heroExit, y: -90 * heroExit, x: "-50%" }}
-          >
-            <p className="eyebrow">Precision workforce logistics</p>
-            <h1>
-              From call
-              <br />
-              to crew
-            </h1>
+          <motion.div className="hero-copy" style={{ opacity: 1 - heroExit, y: -120 * heroExit, x: "-50%", scale: 1 - heroExit * 0.035 }}>
+            <h1>The New Standard<br />in Staffing</h1>
             <p className="hero-deck">
               AI-driven speed. Expert curation.
               <br />
-              Verified crews mobilized to protect your schedule and your bottom line.
+              We mobilize verified crews to protect your schedule and your bottom line<br className="desktop-break" /> in high-consequence environments.
             </p>
             <a href="#process" className="scroll-cue">
               <span>Scroll to discover our process</span>
@@ -106,6 +98,26 @@ export function HomeExperience() {
           </motion.div>
 
           <motion.div id="process" className="process-panel" style={{ opacity: processOpacity }}>
+            <div className="process-detail-wrap">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={active}
+                  className="process-detail"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span>{steps[active].number}</span>
+                  <div>
+                    <h2>{steps[active].title}</h2>
+                    <p>{steps[active].text}</p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+              <i className="process-line"><b style={{ transform: `scaleY(${((active + 1) / steps.length).toFixed(2)})` }} /></i>
+            </div>
+
             <div className="process-list" aria-label="Process stages">
               {steps.map((step, index) => (
                 <button
@@ -121,26 +133,10 @@ export function HomeExperience() {
                     });
                   }}
                 >
-                  <span>{step.number}</span>
-                  <b>{step.title}</b>
+                  <span>{step.number}</span><b>{step.title}</b>
                 </button>
               ))}
             </div>
-
-            <AnimatePresence initial={false}>
-              <motion.div
-                key={active}
-                className="process-detail"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span>{steps[active].number}</span>
-                <h2>{steps[active].title}</h2>
-                <p>{steps[active].text}</p>
-              </motion.div>
-            </AnimatePresence>
           </motion.div>
 
           <div className="progress-rail" aria-hidden="true">

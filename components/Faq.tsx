@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Plus } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 const items = [
@@ -36,7 +36,7 @@ export function Faq() {
           <button type="button" onClick={() => setOpen(open === index ? -1 : index)} aria-expanded={open === index}>
             <span>0{index + 1}</span>
             <strong>{item.question}</strong>
-            <Plus size={18} />
+            <i aria-hidden="true"><ChevronDown size={16} /></i>
           </button>
           <AnimatePresence initial={false}>
             {open === index && (

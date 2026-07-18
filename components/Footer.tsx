@@ -1,27 +1,31 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { Wordmark } from "./Wordmark";
+import { ArrowRight } from "lucide-react";
+
+const links = [
+  { number: "01", label: "Our industries", href: "/industries" },
+  { number: "02", label: "Our mission", href: "/our-mission" },
+  { number: "03", label: "Apply", href: "/apply" },
+];
 
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="footer-top">
-        <Wordmark inverse />
-        <p>Precision workforce logistics for the world&apos;s most critical systems.</p>
-        <Link href="/request-crews" className="footer-action">
-          Request crews <ArrowUpRight size={16} />
-        </Link>
+      <div className="footer-links">
+        {links.map((item) => (
+          <Link href={item.href} key={item.href}>
+            <span>{item.number}</span>
+            <strong>{item.label}</strong>
+            <i aria-hidden="true"><ArrowRight size={18} /></i>
+          </Link>
+        ))}
       </div>
+      <Link href="/" className="footer-wordmark" aria-label="VECTR home">VECTR</Link>
       <div className="footer-bottom">
-        <nav aria-label="Footer navigation">
-          <Link href="/industries">Our industries</Link>
-          <Link href="/mission">Our mission</Link>
-          <Link href="/apply">Apply</Link>
-        </nav>
         <span>© {new Date().getFullYear()} VECTR, Inc.</span>
+        <span>Built for the critical path</span>
         <nav aria-label="Legal">
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
+          <Link href="/privacy">Privacy policy</Link>
+          <Link href="/terms">ToS</Link>
         </nav>
       </div>
     </footer>

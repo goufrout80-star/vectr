@@ -8,7 +8,7 @@ import { Wordmark } from "./Wordmark";
 
 const nav = [
   { href: "/industries", label: "Our industries" },
-  { href: "/mission", label: "Our mission" },
+  { href: "/our-mission", label: "Our mission" },
 ];
 
 export function Header() {
@@ -25,7 +25,7 @@ export function Header() {
 
   return (
     <>
-      <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
+      <header className={`site-header ${scrolled ? "site-header--scrolled" : ""} ${open ? "site-header--menu" : ""}`}>
         <nav className="header-nav" aria-label="Primary navigation">
           <div className="header-left">
             {nav.map((item) => (
@@ -38,10 +38,10 @@ export function Header() {
           <Wordmark />
 
           <div className="header-actions">
-            <Link className="button button--soft" href="/apply">
+            <Link className="button button--quiet" href="/apply">
               Apply
             </Link>
-            <Link className="button button--dark" href="/request-crews">
+            <Link className="button button--dark" href="/request-crew">
               Request crews
             </Link>
           </div>
@@ -60,7 +60,7 @@ export function Header() {
 
       <div className={`mobile-menu ${open ? "mobile-menu--open" : ""}`} aria-hidden={!open}>
         <div className="mobile-menu-inner">
-          {[...nav, { href: "/apply", label: "Apply" }, { href: "/request-crews", label: "Request crews" }].map(
+          {[...nav, { href: "/apply", label: "Apply" }, { href: "/request-crew", label: "Request crews" }].map(
             (item, index) => (
               <Link
                 key={item.href}
@@ -73,7 +73,7 @@ export function Header() {
               </Link>
             ),
           )}
-          <p>AI-driven precision staffing for the world&apos;s most critical systems.</p>
+          <p>Intelligent workflows. Expert curation. Crews ready for the critical path.</p>
         </div>
       </div>
     </>

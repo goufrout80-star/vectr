@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "VECTR — From call to crew",
+    name: "VECTR — The New Standard in Staffing",
     short_name: "VECTR",
     description: "AI-driven precision staffing for critical infrastructure.",
     start_url: "/",
