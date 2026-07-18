@@ -1,0 +1,39 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# testing and builds
+/coverage
+/.next/
+/out/
+
+# production and local
+/build
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# local visual QA and uploaded references
+/analysis/
+/qa/
+/upload/
+/generated_images/
+/scripts/visual-qa.mjs
+/scripts/probe.mjs
+/public/images/*.png
